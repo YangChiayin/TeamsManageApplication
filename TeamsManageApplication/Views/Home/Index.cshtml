@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Final Exam for Chiayin Yang (Student #: 8954164)";
+}
+
+<p>
+    <a asp-controller="Team" asp-action="GetAllTeams">View all teams</a>
+    <span class="mx-1">|</span>
+    <a asp-controller="Team" asp-action="GetAddTeamRequest">Add a new team</a>
+</p>
+<div class="row">
+    <div class="col-sm-6">
+        @await Component.InvokeAsync("RecentPastGames", new { maxToDisplay = 3, numberOfWeeks = 10 })
+    </div>
+    <div class="col-sm-6">
+        A place holder for upcoming home games view component.
+    </div>
+</div>
+

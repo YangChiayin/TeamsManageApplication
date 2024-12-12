@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Manage your team";
+}
+
+<div class="mb-3">
+    <a asp-controller="Team" asp-action="GetAllTeams">All teams</a>
+    <span class="mx-1">|</span>
+    <a asp-controller="Team" asp-action="GetAddTeamRequest">Add new team</a>
+    <span class="mx-1">|</span>
+    <a href="#">Edit this team</a>
+</div>
+
+<div>
+    <p class="h6">Team summary:</p>
+    <p>Placeholder for your team summary info</p>
+</div>
+<div class="row g-3 align-items-center">
+    <div>Placeholder for your counts</div>
+</div>
+
+<div class="text-danger" asp-validation-summary="All"></div>
+
+<hr class="border border-primary border-1 opacity-75" />
+
+<div class="row">
+    <div class="col-sm-9">
+        <p class="h6">Players on this team:</p>
+        <p>Placeholder for your players table</p>
+    </div>
+    <div class="col-sm-3">
+        <form>
+            Placeholder for your add new player form
+        </form>
+    </div>
+</div>
+
+<hr class="border border-primary border-1 opacity-75" />
+
+<div class="row">
+    <div class="col-sm-9">
+        <p class="h6">Games for this team:</p>
+        <p>Placeholder for your games table</p>
+    </div>
+    <div class="col-sm-3">
+        <form>
+            Placeholder for your add new game form
+        </form>
+    </div>
+</div>
+
+<hr class="border border-primary border-1 opacity-75" />
+
+<div>
+    <p>
+        Ideally this app would allow users to update games with Win/Loss/Tied results but in the
+        interest of avoiding too much complexity on this exam we will ignore that for now &#128516;
+    </p>
+</div>

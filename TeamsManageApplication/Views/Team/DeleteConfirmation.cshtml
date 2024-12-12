@@ -1,0 +1,13 @@
+﻿@model Teams.Entities.Team
+
+@{
+    ViewData["Title"] = "Delete Team";
+}
+
+<h6>Confirm Deletion</h6>
+<h3>@Model.Name (Created: @Model.DateCreated?.ToString("d"))</h3>
+
+<form asp-controller="Team" asp-action="ProcessDeleteRequestById" asp-route-id="@Model.TeamId" method="post" enctype="application/x-www-form-urlencoded">
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <a asp-controller="Team" asp-action="GetAllTeams" class="btn btn-primary">Cancel</a>
+</form>

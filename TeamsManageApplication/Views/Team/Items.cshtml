@@ -1,0 +1,36 @@
+﻿@model List<Teams.Entities.Team>
+
+@{
+    ViewData["Title"] = "All teams";
+}
+
+<a asp-controller="Team" asp-action="GetAddTeamRequest">Add new team</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date created</th>
+            <th>Number of players</th>
+            <th>Number of games</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var team in Model)
+        {
+            <tr>
+                <td>@team.Name</td>
+                <td>@team.DateCreated</td>
+                <td>@team.Players?.Count</td>
+                <td>@team.Games?.Count</td>
+                <td>
+                    <a asp-controller="Team" asp-action="GetTeamById" asp-route-id="@team.TeamId">Manage</a>
+                    <span class="mx-1">|</span>
+                    <a asp-controller="Team" asp-action="GetEditRequestById" asp-route-id="@team.TeamId">Edit</a>
+                    <span class="mx-1">|</span>
+                    <a asp-controller="Team" asp-action="GetDeleteRequestById" asp-route-id="@team.TeamId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
