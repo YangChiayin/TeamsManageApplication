@@ -7,6 +7,8 @@
 }
 
 <div class="mb-3">
+    <div class="text-info">@TempData["LastActionMessage"]</div>
+
     <a asp-controller="Team" asp-action="GetAllTeams">All teams</a>
     <span class="mx-1">|</span>
     <a asp-controller="Team" asp-action="GetAddTeamRequest">Add new team</a>
@@ -22,7 +24,7 @@
     <div># of home games: @Model.HomeGameCount  &nbsp;&nbsp;&nbsp; # of away games: @Model.AwayGameCount</div>
 </div>
 
-<div class="text-danger" asp-validation-summary="All"></div>
+<div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
 <hr class="border border-primary border-1 opacity-75" />
 
