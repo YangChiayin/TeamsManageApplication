@@ -24,7 +24,7 @@
     <div># of home games: @Model.HomeGameCount  &nbsp;&nbsp;&nbsp; # of away games: @Model.AwayGameCount</div>
 </div>
 
-<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+<div class="text-danger" asp-validation-summary="All"></div>
 
 <hr class="border border-primary border-1 opacity-75" />
 
@@ -56,22 +56,18 @@
             <div class="mb-3">
                 <label asp-for="NewPlayer.FirstName" class="form-label">First Name</label>
                 <input asp-for="NewPlayer.FirstName" class="form-control" />
-                <span asp-validation-for="NewPlayer.FirstName" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="NewPlayer.LastName" class="form-label">Last Name</label>
                 <input asp-for="NewPlayer.LastName" class="form-control" />
-                <span asp-validation-for="NewPlayer.LastName" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="NewPlayer.Number" class="form-label">Number</label>
                 <input asp-for="NewPlayer.Number" class="form-control" />
-                <span asp-validation-for="NewPlayer.Number" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="NewPlayer.LeagueRegistrationNumber" class="form-label">League registration #</label>
                 <input asp-for="NewPlayer.LeagueRegistrationNumber" class="form-control" />
-                <span asp-validation-for="NewPlayer.LeagueRegistrationNumber" class="text-danger"></span>
             </div>            
             <button type="submit" class="btn btn-primary">Add player</button>
         </form>
