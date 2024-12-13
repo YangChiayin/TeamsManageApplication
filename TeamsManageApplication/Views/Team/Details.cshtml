@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "Manage your team";
 }
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
 <div class="mb-3">
     <a asp-controller="Team" asp-action="GetAllTeams">All teams</a>
