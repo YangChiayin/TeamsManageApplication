@@ -52,24 +52,31 @@
         </table>
     </div>
     <div class="col-sm-3">
-        <form asp-controller="Team" asp-action="AddPlayer" asp-route-teamId="@Model.Team.TeamId" method="post">
+        <form asp-controller="Team" asp-action="AddPlayer" asp-route-id="@Model.Team.TeamId" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
             <div class="mb-3">
-                <label asp-for="NewPlayer.FirstName" class="form-label">First Name</label>
+                <label asp-for="NewPlayer.FirstName">First Name</label>
                 <input asp-for="NewPlayer.FirstName" class="form-control" />
             </div>
+
             <div class="mb-3">
-                <label asp-for="NewPlayer.LastName" class="form-label">Last Name</label>
+                <label asp-for="NewPlayer.LastName">Last Name</label>
                 <input asp-for="NewPlayer.LastName" class="form-control" />
             </div>
+
             <div class="mb-3">
-                <label asp-for="NewPlayer.Number" class="form-label">Number</label>
+                <label asp-for="NewPlayer.Number">Number</label>
                 <input asp-for="NewPlayer.Number" class="form-control" />
             </div>
+
+
             <div class="mb-3">
-                <label asp-for="NewPlayer.LeagueRegistrationNumber" class="form-label">League registration #</label>
+                <label asp-for="NewPlayer.LeagueRegistrationNumber">League registration #</label>
                 <input asp-for="NewPlayer.LeagueRegistrationNumber" class="form-control" />
-            </div>            
-            <button type="submit" class="btn btn-primary">Add player</button>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Player</button>
         </form>
     </div>
 
