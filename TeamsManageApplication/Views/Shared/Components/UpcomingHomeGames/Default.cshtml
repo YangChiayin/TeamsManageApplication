@@ -1,0 +1,10 @@
+﻿@model TeamsManageApplication.Components.GamesViewModel
+
+<h3>Upcoming Home Games</h3>
+<h6>Home games in the next @Model.NumberOfWeeks weeks</h6>
+<ul>
+    @foreach (Teams.Entities.Game g in Model.Games)
+    {
+        <li>Playing @g.OpposingTeamName on @g.Date?.ToString("d")</li>
+    }
+</ul>

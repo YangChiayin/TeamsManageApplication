@@ -12,7 +12,7 @@
         @await Component.InvokeAsync("RecentPastGames", new { maxToDisplay = 3, numberOfWeeks = 10 })
     </div>
     <div class="col-sm-6">
-        A place holder for upcoming home games view component.
+        @await Component.InvokeAsync("UpcomingHomeGames", new { maxToDisplay = 3, numberOfWeeks = 10 })
     </div>
 </div>
 
