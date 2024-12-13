@@ -1,4 +1,5 @@
-﻿using Teams.Entities;
+﻿using System.Diagnostics.Metrics;
+using Teams.Entities;
 
 namespace TeamsManageApplication.Components
 {
@@ -16,5 +17,11 @@ namespace TeamsManageApplication.Components
         // d. The relevant counts
         public int PlayerCount => Team?.Players?.Count ?? 0;
         public int GameCount => Team?.Games?.Count ?? 0;
+
+        // Counts only the games where the GameType is Home.
+        public int HomeGameCount => Team?.Games?.Count(g => g.GameType == GameTypeOptions.Home) ?? 0;
+
+        // Counts only the games where the GameType is Away
+        public int AwayGameCount => Team?.Games?.Count(g => g.GameType == GameTypeOptions.Away) ?? 0;
     }
 }

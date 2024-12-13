@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TeamsManageApplication.Components.TeamDetailsViewModel
+@{
     ViewData["Title"] = "Manage your team";
 }
 
@@ -12,10 +13,10 @@
 
 <div>
     <p class="h6">Team summary:</p>
-    <p>Placeholder for your team summary info</p>
+    <p>The team "@Model.Team.Name" was created on @Model.Team.DateCreated?.ToString("MM/dd/yyyy")</p>
 </div>
 <div class="row g-3 align-items-center">
-    <div>Placeholder for your counts</div>
+    <div># of home games: @Model.HomeGameCount  &nbsp;&nbsp;&nbsp; # of away games: @Model.AwayGameCount</div>
 </div>
 
 <div class="text-danger" asp-validation-summary="All"></div>
@@ -25,13 +26,52 @@
 <div class="row">
     <div class="col-sm-9">
         <p class="h6">Players on this team:</p>
-        <p>Placeholder for your players table</p>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number</th>
+                    <th>League registration #</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var player in Model.Team.Players)
+                {
+                    <tr>
+                        <td>@player.LastName, @player.FirstName</td>
+                        <td>@player.Number</td>
+                        <td>@player.LeagueRegistrationNumber</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
     <div class="col-sm-3">
-        <form>
-            Placeholder for your add new player form
+        <form asp-controller="Team" asp-action="AddPlayer" asp-route-teamId="@Model.Team.TeamId" method="post">
+            <div class="mb-3">
+                <label asp-for="NewPlayer.FirstName" class="form-label">First Name</label>
+                <input asp-for="NewPlayer.FirstName" class="form-control" />
+                <span asp-validation-for="NewPlayer.FirstName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NewPlayer.LastName" class="form-label">Last Name</label>
+                <input asp-for="NewPlayer.LastName" class="form-control" />
+                <span asp-validation-for="NewPlayer.LastName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NewPlayer.Number" class="form-label">Number</label>
+                <input asp-for="NewPlayer.Number" class="form-control" />
+                <span asp-validation-for="NewPlayer.Number" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NewPlayer.LeagueRegistrationNumber" class="form-label">League registration #</label>
+                <input asp-for="NewPlayer.LeagueRegistrationNumber" class="form-control" />
+                <span asp-validation-for="NewPlayer.LeagueRegistrationNumber" class="text-danger"></span>
+            </div>            
+            <button type="submit" class="btn btn-primary">Add player</button>
         </form>
     </div>
+
 </div>
 
 <hr class="border border-primary border-1 opacity-75" />
@@ -39,12 +79,41 @@
 <div class="row">
     <div class="col-sm-9">
         <p class="h6">Games for this team:</p>
-        <p>Placeholder for your games table</p>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Opposing Team</th>
+                    <th>Date</th>
+                    <th>Home/Away</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.Team.Games)
+                {
+                    <tr>
+                        <td>@game.OpposingTeamName</td>
+                        <td>@game.Date?.ToString("MM/dd/yyyy")</td>
+                        <td>@game.GameType</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
     <div class="col-sm-3">
-        <form>
-            Placeholder for your add new game form
+        <form asp-controller="Team" asp-action="AddGame" asp-route-teamId="@Model.Team.TeamId" method="post">
+            <div class="mb-3">
+                <label asp-for="NewGame.OpposingTeamName" class="form-label">Opposing Team</label>
+                <input asp-for="NewGame.OpposingTeamName" class="form-control" />
+                <span asp-validation-for="NewGame.OpposingTeamName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="NewGame.Date" class="form-label">Date</label>
+                <input asp-for="NewGame.Date" class="form-control datepicker" />
+                <span asp-validation-for="NewGame.Date" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Add new game</button>
         </form>
+
     </div>
 </div>
 
