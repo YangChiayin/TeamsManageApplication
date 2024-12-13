@@ -114,7 +114,7 @@ namespace TeamsManageApplication.Controllers
 
         private TeamsDbContext _teamsDbContext;
 
-        [HttpPost("/teams/{id}/players")]  // This follows your existing routing pattern
+        [HttpPost("/teams/{id}/players")]
         public IActionResult AddPlayer(int id, Player player)
         {
             if (ModelState.IsValid)
@@ -125,7 +125,20 @@ namespace TeamsManageApplication.Controllers
                 return RedirectToAction("GetTeamById", new { id = id });
             }
 
-            return RedirectToAction("GetTeamById", new { id = id });
+            // If validation fails, reload the team details with the current data
+            var team = _teamsDbContext.Teams
+                .Include(t => t.Players)
+                .Include(t => t.Games)
+                .FirstOrDefault(t => t.TeamId == id);
+
+            var viewModel = new TeamDetailsViewModel
+            {
+                Team = team,
+                NewPlayer = player,
+                NewGame = new Game()
+            };
+
+            return View("Details", viewModel);
         }
     }
 }
