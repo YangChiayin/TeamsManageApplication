@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Teams.Entities;
+using TeamsManageApplication.Components;
 using TeamsManageApplication.DataAccess;
 
 namespace TeamsManageApplication.Controllers
@@ -27,11 +28,19 @@ namespace TeamsManageApplication.Controllers
         [HttpGet("/teams/{id}")]
         public IActionResult GetTeamById(int id)
         {
-            // TODO: implement this action method to query for
-            // the required info for the details page and pass
-            // it to that view:
+            var team = _teamsDbContext.Teams
+        .Include(t => t.Players)
+        .Include(t => t.Games)
+        .FirstOrDefault(t => t.TeamId == id);
 
-            return View("Details");
+            var viewModel = new TeamDetailsViewModel
+            {
+                Team = team,
+                NewPlayer = new Player(),
+                NewGame = new Game()
+            };
+
+            return View("Details", viewModel);
         }
 
         [HttpGet("/teams/add-request")]
