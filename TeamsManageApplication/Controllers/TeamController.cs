@@ -113,5 +113,35 @@ namespace TeamsManageApplication.Controllers
         }
 
         private TeamsDbContext _teamsDbContext;
+
+        [HttpPost]
+        public IActionResult AddPlayer(int teamId, Player player)
+        {
+            if (!ModelState.IsValid)
+            {
+                var team = _teamsDbContext.Teams
+                    .Include(t => t.Players)
+                    .Include(t => t.Games)
+                    .FirstOrDefault(t => t.TeamId == teamId);
+
+                var viewModel = new TeamDetailsViewModel
+                {
+                    Team = team,
+                    NewPlayer = player,
+                    NewGame = new Game()
+                };
+
+                return View("Details", viewModel);
+            }
+
+            var teamToUpdate = _teamsDbContext.Teams.Find(teamId);
+            player.TeamId = teamId;
+            _teamsDbContext.Players.Add(player);
+            _teamsDbContext.SaveChanges();
+
+            TempData["LastActionMessage"] = $"The player {player.LastName}, {player.FirstName} was added.";
+
+            return RedirectToAction("GetTeamById", new { id = teamId });
+        }
     }
 }

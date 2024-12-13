@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Add Team";
 }
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 
 <form asp-controller="Team" asp-action="AddNewTeam" method="post" enctype="application/x-www-form-urlencoded">
     @Html.Partial("_TeamForm", Model)
